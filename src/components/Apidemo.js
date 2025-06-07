@@ -6,26 +6,12 @@ const animationDuration = 500; // ms for smooth hide animation
 export default function App() {
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center px-4 pt-12 pb-24 bg-gray-100">
-        <h1 className="text-4xl font-bold mb-12 text-indigo-700 text-center max-w-4xl">
-          Your Main Page Content Here
-        </h1>
-        <p className="max-w-xl text-center text-gray-700 mb-20">
-          Scroll down to see the API flow section above the footer.
-        </p>
-
-        {[...Array(10)].map((_, i) => (
-          <p key={i} className="max-w-4xl text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            malesuada, nisl at blandit congue, enim massa congue metus, eu
-            lacinia nulla justo a velit.
-          </p>
-        ))}
+      
 
         <ApiFlowSection />
 
         {/* <Footer /> */}
-      </div>
+    
     </>
   );
 }
