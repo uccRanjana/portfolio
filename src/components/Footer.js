@@ -15,7 +15,7 @@ export default function Footer() {
 
         <div className="flex space-x-6 text-gray-600">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/uccRanjana"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -24,7 +24,7 @@ export default function Footer() {
             <FaGithub size={24} />
           </a>
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://linkedin.com/in/ranjana13"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -33,7 +33,7 @@ export default function Footer() {
             <FaLinkedin size={24} />
           </a>
           <a
-            href="https://twitter.com/yourhandle"
+            href="https://x.com/uccranjana13"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"

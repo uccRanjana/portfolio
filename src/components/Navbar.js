@@ -14,10 +14,11 @@ export default function Navbar({ onNavClick }) {
           {[
             { label: "About", id: "about" },
             { label: "Projects", id: "projects" },
-            { label: "Contact", id: "contact" },
             { label: "Skills", id: "skills" },
-            { label: "Figma Designs", id: "figma" },
-            { label: "Education", id: "education" },
+            // { label: "Contact", id: "contact" },
+
+            // { label: "Figma Designs", id: "figma" },
+            // { label: "Education", id: "education" },
           ].map(({ label, id }) => (
             <li key={id}>
               <a
