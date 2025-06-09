@@ -56,50 +56,33 @@ const cards = [
   },
 ];
 
+// ...imports remain unchanged...
+
 export default function AboutSection() {
   const [hovered, setHovered] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextCard = () => {
-    setCurrentIndex((prev) => (prev + 1) % cards.length);
-  };
-
-  const prevCard = () => {
-    setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
-  };
+  const nextCard = () => setCurrentIndex((prev) => (prev + 1) % cards.length);
+  const prevCard = () => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
 
   const logosVariant = {
     hidden: { opacity: 0, y: 10 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        delay: i * 0.15,
-        duration: 0.4,
-        ease: "easeOut",
-      },
+      transition: { delay: i * 0.15, duration: 0.4, ease: "easeOut" },
     }),
   };
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        minHeight: "100vh",
-        padding: 20,
-        boxSizing: "border-box",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    // w-full max-w-screen-md px-4 mx-auto
+    <div className="w-full min-h-screen py-12 px-4 sm:px-6 md:px-10 flex items-center justify-center overflow-hidden ">
       <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8 }}
-        className="min-h-screen flex flex-col items-center justify-center px-8"
-        style={{ height: "100%", width: "100%", maxWidth: 1400 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}  // <-- was 0.3 before
+          transition={{ duration: 0.8 }}
+        className="w-full max-w-screen-xl"
       >
         <SectionWrapper
           id="about"
@@ -107,7 +90,7 @@ export default function AboutSection() {
           icon={
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-14 h-14"
+              className="w-12 h-12 md:w-14 md:h-14"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -122,24 +105,22 @@ export default function AboutSection() {
             </svg>
           }
         >
-          <div className="flex flex-col md:flex-row gap-20 items-start justify-center text-left w-full max-w-full">
-            {/* Left Column: Photo + Resume Button */}
-            <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-12 w-full">
+            {/* Left: Image & Resume */}
+            <div className="flex flex-col items-center gap-6">
               <div
-                className="relative group rounded-3xl shadow-2xl cursor-pointer"
+                className="relative group rounded-3xl shadow-2xl cursor-pointer w-64 h-64 sm:w-72 sm:h-72"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                style={{ width: 360, height: 360 }}
               >
                 <div
                   className="absolute inset-0 rounded-3xl border-4"
                   style={{
                     borderImageSlice: 1,
-                    borderWidth: "4px",
                     borderImageSource:
                       "linear-gradient(45deg, #B38CD2, #E49486, #6498D8, #E37A79, #6CBC6A)",
                   }}
-                ></div>
+                />
                 {photo ? (
                   <img
                     src={photo}
@@ -147,10 +128,10 @@ export default function AboutSection() {
                     className="rounded-3xl w-full h-full object-contain"
                   />
                 ) : (
-                  <div className="flex flex-col items-center justify-center w-full h-full bg-gray-100 rounded-3xl text-gray-400 select-none">
+                  <div className="flex items-center justify-center w-full h-full bg-gray-100 text-gray-400 rounded-3xl">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="w-16 h-16 mb-3"
+                      className="w-16 h-16"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -164,13 +145,11 @@ export default function AboutSection() {
                     </svg>
                   </div>
                 )}
-
                 <div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-tr from-indigo-900/90 via-indigo-800/70 to-teal-900/80 text-green-400 font-mono text-sm p-4 overflow-hidden select-none transition-opacity duration-500 pointer-events-none ${hovered ? "opacity-100" : "opacity-0"
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-tr from-indigo-900/90 via-indigo-800/70 to-teal-900/80 text-green-400 font-mono text-xs sm:text-sm p-4 overflow-hidden transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"
                     }`}
                 >
-                  <pre className="whitespace-pre-wrap text-sm">
-                    {`// Backend snippet demo
+                  <pre className="whitespace-pre-wrap">{`// Backend snippet
 const fetchData = async () => {
   try {
     const res = await fetch('/api/data');
@@ -178,8 +157,7 @@ const fetchData = async () => {
   } catch (err) {
     console.error('Error:', err);
   }
-};`}
-                  </pre>
+};`}</pre>
                   <svg
                     className="absolute top-2 left-2 w-10 h-10 animate-spin-slow opacity-50"
                     fill="none"
@@ -195,14 +173,14 @@ const fetchData = async () => {
               <a
                 href="/RanjanaResume.pdf"
                 download
-                className="mt-3 px-6 py-2 border border-indigo-300 text-indigo-600 rounded-full text-base hover:border-pink-300 hover:text-pink-600 transition duration-300"
+                className="text-base sm:text-lg mt-2 px-6 py-2 border border-indigo-300 text-indigo-600 rounded-full hover:border-pink-300 hover:text-pink-600 transition duration-300"
               >
                 📄 Download Resume
               </a>
             </div>
 
-            {/* Right Column: Cards */}
-            <div className="flex flex-col max-w-8xl relative mx-auto w-full text-center">
+            {/* Right: Card & Carousel */}
+            <div className="w-full max-w-xl mx-auto text-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
@@ -210,20 +188,12 @@ const fetchData = async () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5 }}
-                  className="rounded-2xl shadow-lg p-10 border-2 border-indigo-500 bg-white text-gray-900"
-                  style={{
-                    minWidth: 360,
-                    maxWidth: 520,
-                    margin: "0 auto",
-                    height: 380,             // Fixed height for entire card
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
+                  className="rounded-2xl shadow-lg p-6 sm:p-8 border-2 border-indigo-500 bg-white text-gray-900"
                 >
-                  <h3 className="text-4xl font-extrabold mb-6">{cards[currentIndex].title}</h3>
-
-                  {/* Logos */}
-                  <motion.div className="flex gap-6 mb-6 justify-center">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold mb-6">
+                    {cards[currentIndex].title}
+                  </h3>
+                  <motion.div className="flex flex-wrap justify-center gap-4 mb-4">
                     {cards[currentIndex].logos.map((logo, i) => (
                       <motion.div
                         key={logo.name}
@@ -231,35 +201,34 @@ const fetchData = async () => {
                         variants={logosVariant}
                         initial="hidden"
                         animate="visible"
-                        className="flex items-center justify-center"
                         title={logo.name}
                       >
-                        <img src={logo.png} alt={logo.name} className="w-14 h-14 object-contain" />
+                        <img
+                          src={logo.png}
+                          alt={logo.name}
+                          className="w-10 sm:w-14 h-10 sm:h-14 object-contain"
+                        />
                       </motion.div>
                     ))}
                   </motion.div>
-
-                  {/* Preview text */}
-                  <p className="leading-relaxed text-lg">{cards[currentIndex].preview}</p>
+                  <p className="text-base sm:text-lg leading-relaxed">
+                    {cards[currentIndex].preview}
+                  </p>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation Buttons */}
-              <div className="flex justify-between mt-8 max-w-5xl mx-auto px-4">
+              <div className="flex justify-between items-center mt-6 px-6">
                 <button
                   onClick={prevCard}
                   aria-label="Previous"
-                  className="p-2 hover:text-peach-600 focus:outline-none"
-                  style={{ background: "none", border: "none", boxShadow: "none" }}
+                  className="hover:text-indigo-500"
                 >
                   <ArrowBackIosNewIcon fontSize="large" />
                 </button>
-
                 <button
                   onClick={nextCard}
                   aria-label="Next"
-                  className="p-2 hover:text-peach-600 focus:outline-none"
-                  style={{ background: "none", border: "none", boxShadow: "none" }}
+                  className="hover:text-indigo-500"
                 >
                   <ArrowForwardIosIcon fontSize="large" />
                 </button>
@@ -267,6 +236,7 @@ const fetchData = async () => {
             </div>
           </div>
 
+          {/* Optional Work Experience section */}
           <WorkExperience />
         </SectionWrapper>
       </motion.div>

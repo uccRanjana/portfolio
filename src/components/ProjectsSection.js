@@ -70,6 +70,7 @@ export default function Projects3DStack() {
   const containerRef = useRef(null);
   const projectsCount = projects.length;
 
+
   const handleWheel = (e) => {
     if (!hovering) return;
     e.preventDefault();
@@ -84,15 +85,62 @@ export default function Projects3DStack() {
     } else {
       setCurrentIndex((i) => (i - 1 + projectsCount) % projectsCount);
     }
+
+    
   };
 
+
+  const touchStartX = useRef(0);
+const touchEndX = useRef(0);
+
+const handleTouchStart = (e) => {
+  touchStartX.current = e.touches[0].clientX;
+};
+
+const handleTouchEnd = (e) => {
+  touchEndX.current = e.changedTouches[0].clientX;
+  handleSwipe();
+};
+
+const handleSwipe = () => {
+  const deltaX = touchStartX.current - touchEndX.current;
+  if (Math.abs(deltaX) < 50) return; // Ignore tiny swipes
+
+  if (scrollTimeout.current) return;
+
+  scrollTimeout.current = setTimeout(() => {
+    scrollTimeout.current = null;
+  }, 150);
+
+  if (deltaX > 0) {
+    // Swipe left → next project
+    setCurrentIndex((i) => (i + 1) % projectsCount);
+  } else {
+    // Swipe right → previous project
+    setCurrentIndex((i) => (i - 1 + projectsCount) % projectsCount);
+  }
+};
+
+
   useEffect(() => {
-    const el = containerRef.current;
-    if (el) el.addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      if (el) el.removeEventListener("wheel", handleWheel);
-    };
-  }, [hovering]);
+  const el = containerRef.current;
+  if (!el) return;
+
+  // Mouse wheel support
+  el.addEventListener("wheel", handleWheel, { passive: false });
+
+  // Touch swipe support
+  el.addEventListener("touchstart", handleTouchStart, { passive: true });
+  el.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+  // Cleanup
+  return () => {
+    el.removeEventListener("wheel", handleWheel);
+    el.removeEventListener("touchstart", handleTouchStart);
+    el.removeEventListener("touchend", handleTouchEnd);
+  };
+}, [hovering]);
+
 
   const getCardSize = () => {
     const width = window.innerWidth;

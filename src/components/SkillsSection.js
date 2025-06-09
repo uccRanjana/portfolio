@@ -66,7 +66,6 @@ export default function SkillsSection() {
     <>
       {/* Blur background when modal open */}
       <div
-     
         className={`fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-500 z-30 ${
           activeIndex !== null
             ? "opacity-100 pointer-events-auto"
@@ -75,15 +74,16 @@ export default function SkillsSection() {
         onClick={() => setActiveIndex(null)}
       />
 
-      <section id="skills" className="max-w-6xl mx-auto my-20 px-4 relative z-40">
-       <h1 className="text-7xl font-extrabold text-black text-center mb-14 font-serif tracking-wide">
-  My Skills
-</h1>
-
+      <section
+        id="skills"
+        className="max-w-6xl mx-auto my-10 px-4 sm:my-14 sm:px-6 relative z-40"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-black text-center mb-10 sm:mb-14 font-serif tracking-wide">
+          My Skills
+        </h1>
 
         <div
-       
-          className={`grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-3 transition-filter duration-500 ${
+          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 transition-filter duration-500 ${
             activeIndex !== null ? "blur-sm" : ""
           }`}
         >
@@ -95,10 +95,8 @@ export default function SkillsSection() {
               <div
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`relative bg-pink-50 border-2 border-pink-400 rounded-xl cursor-pointer select-none p-6 shadow-lg transform transition-transform duration-500 ease-in-out ${
-                  isActive
-                    ? "shadow-2xl z-50"
-                    : "hover:scale-105 hover:shadow-xl"
+                className={`relative bg-pink-50 border-2 border-pink-400 rounded-xl cursor-pointer select-none p-4 sm:p-6 shadow-lg transform transition-transform duration-500 ease-in-out ${
+                  isActive ? "shadow-2xl z-50" : "hover:scale-105 hover:shadow-xl"
                 }`}
                 style={{
                   transformOrigin: "center center",
@@ -108,13 +106,13 @@ export default function SkillsSection() {
                   userSelect: "none",
                   willChange: "transform",
                   zIndex: isActive ? 9999 : "auto",
-                  minHeight: "150px",
+                  minHeight: "140px",
                 }}
                 title="Click to open note"
               >
                 {/* 3D Pin */}
                 <div
-                  className={`absolute -top-5 right-6 w-8 h-8 flex items-center justify-center transition-transform duration-500 ease-in-out ${
+                  className={`absolute -top-5 right-6 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center transition-transform duration-500 ease-in-out ${
                     isActive ? "animate-pin-pop" : ""
                   }`}
                   style={{ transformOrigin: "bottom center" }}
@@ -126,7 +124,7 @@ export default function SkillsSection() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="w-8 h-8 drop-shadow-md"
+                    className="w-7 h-7 sm:w-8 sm:h-8 drop-shadow-md"
                   >
                     <ellipse
                       cx="12"
@@ -142,14 +140,14 @@ export default function SkillsSection() {
                   </svg>
                 </div>
 
-                <h3 className="text-xl font-bold text-pink-900 mb-2 select-text break-words">
+                <h3 className="text-lg sm:text-xl font-bold text-pink-900 mb-2 select-text break-words">
                   {skill.name}
                 </h3>
 
                 {isActive && (
                   <p
-                    className="text-pink-800 mt-3 select-text max-w-full"
-                    style={{ lineHeight: "1.5rem", wordBreak: "break-word" }}
+                    className="text-pink-800 mt-3 select-text max-w-full text-sm sm:text-base"
+                    style={{ lineHeight: "1.4rem", wordBreak: "break-word" }}
                   >
                     {skill.desc}
                   </p>
@@ -161,10 +159,10 @@ export default function SkillsSection() {
 
         {activeIndex !== null && (
           <div
-            className="fixed top-1/2 left-1/2 z-50 max-w-lg w-11/12 sm:w-3/4 md:w-full p-6 md:p-8 bg-pink-100 border-4 border-pink-400 rounded-3xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 animate-modal-pop"
+            className="fixed top-1/2 left-1/2 z-50 max-w-md sm:max-w-lg w-11/12 sm:w-3/4 md:w-full p-4 sm:p-6 md:p-8 bg-pink-100 border-4 border-pink-400 rounded-3xl shadow-2xl transform -translate-x-1/2 -translate-y-1/2 animate-modal-pop"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute -top-8 right-6 sm:right-10 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+            <div className="absolute -top-8 right-5 sm:right-8 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -172,7 +170,7 @@ export default function SkillsSection() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-10 h-10 sm:w-12 sm:h-12 drop-shadow-lg"
+                className="w-8 h-8 sm:w-10 sm:h-10 drop-shadow-lg"
               >
                 <ellipse
                   cx="12"
@@ -188,19 +186,19 @@ export default function SkillsSection() {
               </svg>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold mb-4 text-pink-900 select-text break-words">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-4 text-pink-900 select-text break-words">
               {skills[activeIndex].name}
             </h3>
             <p
-              className="text-pink-800 text-base sm:text-lg select-text"
-              style={{ lineHeight: "1.6rem", wordBreak: "break-word" }}
+              className="text-pink-800 text-sm sm:text-base md:text-lg select-text"
+              style={{ lineHeight: "1.5rem", wordBreak: "break-word" }}
             >
               {skills[activeIndex].desc}
             </p>
 
             <button
               onClick={() => setActiveIndex(null)}
-              className="mt-6 px-6 py-2 rounded-full bg-pink-400 hover:bg-pink-500 text-white font-semibold transition"
+              className="mt-6 px-5 py-2 text-sm sm:text-base rounded-full bg-pink-400 hover:bg-pink-500 text-white font-semibold transition"
             >
               Close
             </button>
