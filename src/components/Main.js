@@ -8,6 +8,7 @@ import ContactSection from "./ContactSection";
 import Apidemo from "./Apidemo";
 import Footer from "./Footer";
 import EducationSection from "./SkillsSection";
+import ContactFormBox from "./ContactForm";
 
 
 export default function Main() {
@@ -56,6 +57,10 @@ export default function Main() {
       {/* Contact: back to light pastel blue */}
       <section style={{ backgroundColor: "#e8f1fa" }}>
         <ContactSection />
+      </section>
+
+        <section style={{ backgroundColor: "#e8f1fa" }}>
+        <ContactFormBox />
       </section>
 
       
