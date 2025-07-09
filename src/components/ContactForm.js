@@ -8,9 +8,9 @@ export default function ContactFormBox() {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState("");
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxEbMtu41Nr2MuFzw11ohi26UdkntfKYMC05M5xMGoKn6FBuXYn1ttqTrt-rHwJQ-naJQ/exec"; // replace with actual script
+  const [status, setStatus] = useState("");
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxEbMtu41Nr2MuFzw11ohi26UdkntfKYMC05M5xMGoKn6FBuXYn1ttqTrt-rHwJQ-naJQ/exec"; // ✅ Replace with your script if needed
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -30,11 +30,12 @@ export default function ContactFormBox() {
         method: "POST",
         body: form,
       });
-      setStatus("✅ Message sent!");
+
+      setStatus("✅ Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
       console.error(err);
-      setStatus("❌ Failed to send. Try again.");
+      setStatus("❌ Failed to send. Try again later.");
     }
   };
 
@@ -45,7 +46,7 @@ export default function ContactFormBox() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Left Side Image */}
+      {/* Left Image */}
       <div className="w-full md:w-1/2 flex justify-center">
         <img
           src={contactmeLogo}
@@ -57,7 +58,7 @@ export default function ContactFormBox() {
       {/* Right Form */}
       <div className="w-full md:w-1/2">
         <h2 className="text-3xl font-extrabold text-blue-600 mb-2">Contact Me</h2>
-        <p className="text-sm text-gray-600 mb-6">I’d love to hear from you. Drop a message!</p>
+        <p className="text-sm text-gray-600 mb-6">I'd love to hear from you. Drop a message!</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -86,12 +87,14 @@ export default function ContactFormBox() {
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring"
           ></textarea>
+
           <button
             type="submit"
             className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
           >
             Send Message
           </button>
+
           {status && (
             <p className="text-sm text-center mt-2 text-gray-700">{status}</p>
           )}
