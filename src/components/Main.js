@@ -8,8 +8,6 @@ import ContactSection from "./ContactSection";
 import Apidemo from "./Apidemo";
 import Footer from "./Footer";
 import EducationSection from "./SkillsSection";
-import ContactFormBox from "./ContactForm";
-
 
 export default function Main() {
   const handleNavClick = (e, id) => {
@@ -47,11 +45,11 @@ export default function Main() {
       </section>
 
       {/* Skills: soft pink background for accent */}
-     
-     {/* <section style={{ backgroundColor: "#FAD4E6" }}> */}
-        <div className="md:w-1/3 mx-auto">
-          <EducationSection />
-        </div>
+
+      {/* <section style={{ backgroundColor: "#FAD4E6" }}> */}
+      <div className="md:w-1/3 mx-auto">
+        <EducationSection />
+      </div>
       {/* </section> */}
 
       {/* Contact: back to light pastel blue */}
@@ -59,11 +57,6 @@ export default function Main() {
         <ContactSection />
       </section>
 
-        <section style={{ backgroundColor: "#e8f1fa" }}>
-        <ContactFormBox />
-      </section>
-
-      
 
       {/* Footer: dark background for contrast */}
       <footer style={{ backgroundColor: "#BE185D", color: "#fff" }}>
